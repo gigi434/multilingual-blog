@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  frontend:
+    user: node
+    build:
+      context: .
+      dockerfile: docker/frontend/Dockerfile.dev
+    ports:
+    # Next.js
+     - 3060:3000
+    volumes:
+      - "./app/frontend:/home/node/nextjs"
+      - "frontend_node_modules:/home/node/nextjs/node_modules"
+    tty: true
+    stdin_open: true
+    
+volumes:
+  frontend_node_modules:

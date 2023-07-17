@@ -1,0 +1,10 @@
+.env
+**/.env
+.git
+tmp
+**/tmp
+__pycache__
+**/__pycache__
+
+**/docker-compose
+**/Dockerfile**

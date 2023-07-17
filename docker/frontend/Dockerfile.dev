@@ -1,0 +1,6 @@
+FROM node:20.4.0-bullseye-slim
+
+ENV HOME=/home/node
+ENV APP_HOME="$HOME/nextjs"
+
+WORKDIR $APP_HOME
