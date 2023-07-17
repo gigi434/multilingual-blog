@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import { PaddingContainer } from '@/components/layout/PaddingContainer'
+import { PaddingContainer } from '@/components'
 
 export function Navigation() {
   return (
