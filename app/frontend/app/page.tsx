@@ -1,10 +1,9 @@
-import Link from 'next/link'
-
+import { Navigation } from '@/components/navigation'
 export default function Home() {
   return (
-    <main>
+    <main className="h-[3000px]">
+      <Navigation />
       <h1>Home</h1>
-      <Link href="/about">About</Link>
     </main>
   )
 }
