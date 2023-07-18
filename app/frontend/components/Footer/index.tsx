@@ -18,26 +18,9 @@ export function Footer() {
           <div>
             <div className="font-medium text-lg">#exploretheworld</div>
             <div className="flex items-center gap-3 text-neutral-600 mt-2">
-              <SocialLink
-                platform="twitter"
-                link={siteConfig.socialLinks.twitter}
-              />
-              <SocialLink
-                platform="youtube"
-                link={siteConfig.socialLinks.youtube}
-              />
-              <SocialLink
-                platform="github"
-                link={siteConfig.socialLinks.github}
-              />
-              <SocialLink
-                platform="linkedin"
-                link={siteConfig.socialLinks.linkedin}
-              />
-              <SocialLink
-                platform="instagram"
-                link={siteConfig.socialLinks.instagram}
-              />
+              {siteConfig.socialLinks.map(({ platform, url }) => (
+                <SocialLink key={platform} platform={platform} link={url} />
+              ))}
             </div>
           </div>
           <div>

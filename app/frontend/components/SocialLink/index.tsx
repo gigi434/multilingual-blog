@@ -10,18 +10,12 @@ import {
 import * as React from 'react'
 
 interface ISocialLink {
-  platform:
-    | 'facebook'
-    | 'twitter'
-    | 'instagram'
-    | 'youtube'
-    | 'linkedin'
-    | 'github'
+  platform: string
   link: string
 }
 
 export function SocialLink({ platform, link }: ISocialLink) {
-  const getIcon = (platform: ISocialLink['platform']) => {
+  const getIcon = (platform: string) => {
     switch (platform) {
       case 'facebook':
         return <Facebook size={18} />
