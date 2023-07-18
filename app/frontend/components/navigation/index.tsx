@@ -6,7 +6,7 @@ export function Navigation() {
   return (
     <div className="sticky top-0 left-0 right-0 border-b bg-white bg-opacity-50 backdrop-blur-md">
       <PaddingContainer>
-        <div className="py-6 flex justify-between items-center border-b ">
+        <div className="py-6 flex justify-between items-center ">
           <Link href="/" className="text-lg font-bold">
             Explorer
           </Link>
