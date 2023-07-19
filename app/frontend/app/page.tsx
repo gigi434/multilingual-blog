@@ -8,6 +8,10 @@ export default function Home() {
         <PostList
           posts={DUMMY_POSTS.filter((post, index) => index > 0 && index < 3)}
         />
+        <PostCard post={DUMMY_POSTS[3]} reverse={true} />
+        <PostList
+          posts={DUMMY_POSTS.filter((post, index) => index > 3 && index < 6)}
+        />
       </main>
     </PaddingContainer>
   )
