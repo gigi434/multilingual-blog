@@ -1,4 +1,4 @@
-import { PaddingContainer, PostCard, PostList } from '@/components'
+import { CTACard, PaddingContainer, PostCard, PostList } from '@/components'
 import { DUMMY_POSTS } from '@/DUMMY_DATA'
 export default function Home() {
   return (
@@ -8,6 +8,7 @@ export default function Home() {
         <PostList
           posts={DUMMY_POSTS.filter((post, index) => index > 0 && index < 3)}
         />
+        <CTACard />
         <PostCard post={DUMMY_POSTS[3]} reverse={true} />
         <PostList
           posts={DUMMY_POSTS.filter((post, index) => index > 3 && index < 6)}
