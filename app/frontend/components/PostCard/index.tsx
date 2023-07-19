@@ -6,12 +6,17 @@ import { PostContent } from '@/components'
 
 interface PostPostCardProps {
   post: Post
+  layout?: 'vertical' | 'horizontal'
 }
 
-export function PostCard({ post }: PostPostCardProps) {
+export function PostCard({ post, layout = 'horizontal' }: PostPostCardProps) {
   return (
     <Link
-      className="grid grid-cols-2 gap-10 items-center"
+      className={`${
+        layout === 'horizontal'
+          ? 'grid grid-cols-2 gap-10 items-center'
+          : 'space-y-10'
+      }`}
       href={`/post/${post.slug}`}
     >
       {/* Post Image */}
