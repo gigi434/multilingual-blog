@@ -22,19 +22,21 @@ export function PostContent({ post }: PostContentProps) {
           {post.category.title}
         </div>
 
-        <div className="w-2 h-2 rounded-full bg-neutral-200"></div>
+        <div className="h-2 w-2 rounded-full bg-neutral-200"></div>
         <div>
           {`${post.author.first_name}`} {`${post.author.last_name}`}
         </div>
-        <div className="w-2 h-2 rounded-full bg-neutral-200"></div>
+        <div className="h-2 w-2 rounded-full bg-neutral-200"></div>
         <div>{getReadingTime(post.body)}</div>
-        <div className="w-2 h-2 rounded-full bg-neutral-200"></div>
+        <div className="h-2 w-2 rounded-full bg-neutral-200"></div>
         <div>{getRelativeDate(post.date_created)}</div>
       </div>
       {/* Title */}
-      <h2 className="font-medium text-3xl">{post.title}</h2>
+      <h2 className="font-medium @md:text-2xl @lg:text-3xl">{post.title}</h2>
       {/* Description */}
-      <p className="leading-snug text-neutral-600">{post.description}</p>
+      <p className="text-base leading-snug text-neutral-600  @lg:text-lg">
+        {post.description}
+      </p>
       <div className="flex items-center gap-2 pt-3">
         Read More <ArrowRight size="14" />
       </div>

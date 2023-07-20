@@ -4,9 +4,9 @@ import { PaddingContainer } from '@/components'
 
 export function Navigation() {
   return (
-    <div className="sticky top-0 left-0 right-0 border-b bg-white bg-opacity-50 backdrop-blur-md">
+    <div className="sticky inset-x-0 top-0 border-b bg-white/50 backdrop-blur-md">
       <PaddingContainer>
-        <div className="py-6 flex justify-between items-center ">
+        <div className="flex items-center justify-between py-6 ">
           <Link href="/" className="text-lg font-bold">
             Explorer
           </Link>

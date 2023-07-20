@@ -17,17 +17,17 @@ export function PostCard({
 }: PostPostCardProps) {
   return (
     <Link
-      className={`${
+      className={`@container ${
         layout === 'horizontal'
-          ? 'grid grid-cols-2 gap-10 items-center'
+          ? 'grid grid-cols-1 items-center gap-10 md:grid-cols-2 '
           : 'space-y-10'
       }`}
       href={`/post/${post.slug}`}
     >
       {/* Post Image */}
       <Image
-        className={`rounded-md w-full object-cover object-center max-h-[300px] ${
-          reverse ? 'order-last' : ''
+        className={`max-h-[300px] w-full rounded-md object-cover object-center ${
+          reverse ? 'md:order-last' : ''
         }`}
         alt={post.title}
         src={post.image}

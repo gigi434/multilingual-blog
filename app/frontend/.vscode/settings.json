@@ -1,4 +1,5 @@
 {
+  "json.schemaDownload.enable": true,
   // ファイル保存時にprettierによる自動フォーマットを実行するか
   "editor.formatOnSave": true,
   // デフォルトのフォーマッタをprettierに設定する
