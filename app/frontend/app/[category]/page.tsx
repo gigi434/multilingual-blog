@@ -1,4 +1,5 @@
 import { DUMMY_POSTS, DUMMY_CATEGORIES } from '@/DUMMY_DATA'
+import { PaddingContainer, PostList } from '@/components'
 
 export const generateStaticParams = async () => {
   return DUMMY_CATEGORIES.map((category) => {
@@ -18,5 +19,9 @@ export default function Page({
   const posts = DUMMY_POSTS.filter(
     (post) => post.category.title.toLocaleLowerCase() === params.category,
   )
-  return <div>{JSON.stringify(posts)}</div>
+  return (
+    <PaddingContainer>
+      <PostList posts={posts} />
+    </PaddingContainer>
+  )
 }
