@@ -4,7 +4,7 @@ import { PaddingContainer } from '@/components'
 
 export function Navigation() {
   return (
-    <div className="sticky inset-x-0 top-0 border-b bg-white/50 backdrop-blur-md">
+    <div className="sticky inset-x-0 top-0 z-[999] border-b bg-white/50 backdrop-blur-md">
       <PaddingContainer>
         <div className="flex items-center justify-between py-6 ">
           <Link href="/" className="text-lg font-bold">
