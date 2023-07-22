@@ -1,0 +1,21 @@
+import { Post } from '@/types/collection'
+import { PostContent } from '../PostContent'
+import Image from 'next/image'
+interface PostHeroProps {
+  post: Post
+}
+
+export function PostHero({ post }: PostHeroProps) {
+  return (
+    <div>
+      <PostContent isPostPage post={post} />
+      <Image
+        className="mt-6 h-[300px] rounded-md object-cover object-center md:h-[500px]"
+        src={post.image}
+        width={1200}
+        height={500}
+        alt={post.title}
+      />
+    </div>
+  )
+}
