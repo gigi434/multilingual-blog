@@ -1,7 +1,7 @@
 import { DUMMY_POSTS } from '@/DUMMY_DATA'
 import React from 'react'
 import { notFound } from 'next/navigation'
-import { PaddingContainer, PostHero } from '@/components'
+import { PaddingContainer, PostBody, PostHero } from '@/components'
 import { SocialLink } from '@/components'
 
 export const generateStaticParams = async () => {
@@ -36,27 +36,22 @@ export default function Page({
             <SocialLink
               isShareURL
               platform="facebook"
-              link={`https://twitter.com/intent/tweet?url=${
-                'http://localhost:3000' + `/post/${post.slug}`
-              }`}
+              link={`https://twitter.com/intent/tweet?url=${`${process.env.NEXT_PUBLIC_SITE_URL}/post/${post.slug}`}`}
             />
             <SocialLink
               isShareURL
               platform="twitter"
-              link={`https://twitter.com/intent/tweet?url=${
-                'http://localhost:3000' + `/post/${post.slug}`
-              }`}
+              link={`https://twitter.com/intent/tweet?url=${`${process.env.NEXT_PUBLIC_SITE_URL}/post/${post.slug}`}`}
             />
             <SocialLink
               isShareURL
               platform="linkedin"
-              link={`https://twitter.com/intent/tweet?url=${
-                'http://localhost:3000' + `/post/${post.slug}`
-              }`}
+              link={`https://twitter.com/intent/tweet?url=${`${process.env.NEXT_PUBLIC_SITE_URL}/post/${post.slug}`}`}
             />
           </div>
         </div>
         {/* Post Body */}
+        <PostBody body={post.body} />
         <div className="h-[1200px] bg-slate-200">Post Body</div>
       </div>
     </PaddingContainer>
