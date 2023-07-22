@@ -2,7 +2,7 @@ import { DUMMY_POSTS } from '@/DUMMY_DATA'
 import React from 'react'
 import { notFound } from 'next/navigation'
 import { PaddingContainer, PostHero } from '@/components'
-import Image from 'next/image'
+import { SocialLink } from '@/components'
 
 export const generateStaticParams = async () => {
   return DUMMY_POSTS.map((post) => {
@@ -32,7 +32,29 @@ export default function Page({
       <div className="mt-10 flex gap-10">
         {/* Social Links */}
         <div className="relative">
-          <div className="sticky top-20">Share</div>
+          <div className="sticky top-20 flex flex-col gap-5">
+            <SocialLink
+              isShareURL
+              platform="facebook"
+              link={`https://twitter.com/intent/tweet?url=${
+                'http://localhost:3000' + `/post/${post.slug}`
+              }`}
+            />
+            <SocialLink
+              isShareURL
+              platform="twitter"
+              link={`https://twitter.com/intent/tweet?url=${
+                'http://localhost:3000' + `/post/${post.slug}`
+              }`}
+            />
+            <SocialLink
+              isShareURL
+              platform="linkedin"
+              link={`https://twitter.com/intent/tweet?url=${
+                'http://localhost:3000' + `/post/${post.slug}`
+              }`}
+            />
+          </div>
         </div>
         {/* Post Body */}
         <div className="h-[1200px] bg-slate-200">Post Body</div>
