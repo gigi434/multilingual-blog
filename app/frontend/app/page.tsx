@@ -8,7 +8,7 @@ export default async function Home() {
     try {
       const posts = await directusClient.items('post').readByQuery({
         fields: [
-          '*', // 参照しているテーブル（この場合postテーブル）におけるすべてのカラム
+          '*',
           'author.id',
           'author.first_name',
           'author.last_name',
@@ -16,6 +16,7 @@ export default async function Home() {
           'category.title',
         ],
       })
+      console.log(posts)
 
       return posts.data
     } catch (error) {
