@@ -26,7 +26,7 @@ export function PostCard({
     >
       {/* Post Image */}
       <Image
-        className={`max-h-[300px] w-full rounded-md object-cover object-center ${
+        className={`h-full max-h-[300px] w-full rounded-md object-cover object-center ${
           reverse ? 'md:order-last' : ''
         }`}
         alt={post.title}
@@ -35,7 +35,7 @@ export function PostCard({
         height={300}
       />
       {/* Post Title */}
-      <PostContent post={post} />
+      <PostContent isPostPage={false} post={post} />
     </Link>
   )
 }

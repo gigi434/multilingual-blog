@@ -9,12 +9,12 @@ interface PostContentProps {
   isPostPage: boolean
 }
 
-export function PostContent({ post, isPostPage }: PostContentProps) {
+export function PostContent({ post, isPostPage = false }: PostContentProps) {
   return (
     <div className="space-y-2">
       {/* Tags */}
       <div
-        className={`flex items-center gap-2 text-xs text-neutral-400 @md:text-sm ${
+        className={`flex flex-wrap items-center gap-2 text-xs text-neutral-400 @md:text-sm ${
           isPostPage ? 'text-sm' : 'text-xs @md:text-sm'
         }`}
       >

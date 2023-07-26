@@ -17,7 +17,7 @@ export function Navigation() {
                 <Link href="/cities">Cities</Link>
               </li>
               <li>
-                <Link href="/experiencies">Experiencies</Link>
+                <Link href="/experiences">Experiences</Link>
               </li>
             </ul>
           </nav>
