@@ -16,6 +16,7 @@ export interface Category {
   title: string
   slug?: string
   description?: string
+  posts: Post[]
 }
 
 export interface Author {

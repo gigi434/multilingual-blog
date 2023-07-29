@@ -1,6 +1,8 @@
 import { DUMMY_POSTS, DUMMY_CATEGORIES } from '@/DUMMY_DATA'
 import { PaddingContainer, PostList } from '@/components'
-
+import { directusClient } from '@/lib'
+import { Category, Post } from '@/types/collection'
+import { notFound } from 'next/navigation'
 export const generateStaticParams = async () => {
   return DUMMY_CATEGORIES.map((category) => {
     return {
@@ -9,19 +11,52 @@ export const generateStaticParams = async () => {
   })
 }
 
-export default function Page({
+export default async function Page({
   params,
 }: {
   params: {
     category: string
   }
 }) {
-  const category = DUMMY_CATEGORIES.find(
-    (category) => category.slug === params.category,
-  )
-  const posts = DUMMY_POSTS.filter(
-    (post) => post.category.title.toLocaleLowerCase() === params.category,
-  )
+  // const category = DUMMY_CATEGORIES.find(
+  //   (category) => category.slug === params.category,
+  // )
+  // const posts = DUMMY_POSTS.filter(
+  //   (post) => post.category.title.toLocaleLowerCase() === params.category,
+  // )
+  const getCategoryData = async () => {
+    try {
+      const response = await directusClient.items('category').readByQuery({
+        filter: {
+          slug: {
+            _eq: params.category,
+          },
+        },
+        fields: [
+          '*',
+          'posts.*',
+          'posts.author.id',
+          'posts.author.first_name',
+          'posts.author.last_name',
+          'posts.category.id',
+          'posts.category.title',
+        ],
+      })
+      const data: Category[] = response.data || null || []
+      const category = data?.[0]
+
+      return category
+    } catch (error) {
+      throw new Error('Error fetching category')
+    }
+  }
+
+  const category = await getCategoryData()
+
+  if (!category) {
+    notFound()
+  }
+
   return (
     <PaddingContainer>
       {/* Category */}
@@ -29,7 +64,7 @@ export default function Page({
         <h1 className="text-4xl font-semibold">{category?.title}</h1>
         <p className="text-lg text-neutral-600">{category?.description}</p>
       </div>
-      <PostList posts={posts} />
+      <PostList posts={category?.posts} />
     </PaddingContainer>
   )
 }
