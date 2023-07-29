@@ -17,7 +17,7 @@ export const DUMMY_POSTS: Post[] = [
   },
   {
     id: '2',
-    title: 'The vibrant city of Paris',
+    title: 'The vibrant cixty of Paris',
     description:
       'Paris is the capital and most populous city of France. It is located on the Seine River, in the north of the country, at the heart of the Île-de-France region.',
     category: { id: '1', title: 'Cities' },

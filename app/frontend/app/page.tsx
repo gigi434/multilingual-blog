@@ -1,5 +1,4 @@
 import { CTACard, PaddingContainer, PostCard, PostList } from '@/components'
-import { DUMMY_POSTS } from '@/DUMMY_DATA'
 import { directusClient } from '@/lib'
 import { notFound } from 'next/navigation'
 
@@ -16,11 +15,9 @@ export default async function Home() {
           'category.title',
         ],
       })
-      console.log(posts)
 
       return posts.data
     } catch (error) {
-      console.log(error)
       throw new Error('Error fetching posts')
     }
   }

@@ -1,5 +1,5 @@
 import { Post } from '@/types/collection'
-import { PostContent } from '../PostContent'
+import { PostContent } from '@/components'
 import Image from 'next/image'
 interface PostHeroProps {
   post: Post
