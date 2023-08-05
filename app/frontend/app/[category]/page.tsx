@@ -18,12 +18,6 @@ export default async function Page({
     category: string
   }
 }) {
-  // const category = DUMMY_CATEGORIES.find(
-  //   (category) => category.slug === params.category,
-  // )
-  // const posts = DUMMY_POSTS.filter(
-  //   (post) => post.category.title.toLocaleLowerCase() === params.category,
-  // )
   const getCategoryData = async () => {
     try {
       const response = await directusClient.items('category').readByQuery({
@@ -42,7 +36,7 @@ export default async function Page({
           'posts.category.title',
         ],
       })
-      const data: Category[] = response.data || null || []
+      const data: Category[] = response.data || []
       const category = data?.[0]
 
       return category

@@ -3,23 +3,63 @@ import React from 'react'
 import { notFound } from 'next/navigation'
 import { CTACard, PaddingContainer, PostBody, PostHero } from '@/components'
 import { SocialLink } from '@/components'
+import { directusClient } from '@/lib'
 
 export const generateStaticParams = async () => {
-  return DUMMY_POSTS.map((post) => {
-    return {
-      slug: post.slug,
-    }
-  })
+  try {
+    const posts = await directusClient.items('post').readByQuery({
+      filter: {
+        status: {
+          _eq: 'published',
+        },
+      },
+      fields: ['slug'],
+    })
+
+    const params = posts?.data?.map((post) => {
+      return {
+        slug: post.slug as string,
+      }
+    })
+
+    return params || []
+  } catch (error) {
+    console.log('Error fetching posts data' + error)
+  }
 }
 
-export default function Page({
+export default async function Page({
   params,
 }: {
   params: {
     slug: string
   }
 }) {
-  const post = DUMMY_POSTS.find((post) => post.slug === params.slug)
+  const getPostData = async () => {
+    try {
+      const post = await directusClient.items('post').readByQuery({
+        filter: {
+          slug: {
+            _eq: params.slug,
+          },
+        },
+        fields: [
+          '*',
+          'category.id',
+          'category.title',
+          'author.id',
+          'author.first_name',
+          'author.last?name',
+        ],
+      })
+
+      return post?.data?.[0]
+    } catch (error) {
+      throw new Error('Error')
+    }
+  }
+
+  const post = await getPostData()
 
   if (!post) {
     notFound()
