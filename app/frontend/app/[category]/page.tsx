@@ -51,14 +51,26 @@ export default async function Page({
     notFound()
   }
 
+  const typeCorrectedCategory = category as unknown as {
+    id: string
+    title: string
+    description: string
+    slug: string
+    posts: Post[]
+  }
+
   return (
     <PaddingContainer>
       {/* Category */}
       <div className="mb-10">
-        <h1 className="text-4xl font-semibold">{category?.title}</h1>
-        <p className="text-lg text-neutral-600">{category?.description}</p>
+        <h1 className="text-4xl font-semibold">
+          {typeCorrectedCategory?.title}
+        </h1>
+        <p className="text-lg text-neutral-600">
+          {typeCorrectedCategory?.description}
+        </p>
       </div>
-      <PostList posts={category?.posts} />
+      <PostList posts={typeCorrectedCategory?.posts} />
     </PaddingContainer>
   )
 }
