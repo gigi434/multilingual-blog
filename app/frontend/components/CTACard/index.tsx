@@ -1,17 +1,34 @@
 import React from 'react'
 import Image from 'next/image'
 import { directusClient } from '@/lib'
+import { revalidateTag } from 'next/cache'
 
 export async function CTACard() {
-  const SignUpHandler = async (formData: FormData) => {
+  const signUpHandler = async (formData: FormData) => {
     'use server'
     try {
       const email = formData.get('email')
       await directusClient.items('subscribers').createOne({
         email,
       })
-    } catch (err) {}
+      revalidateTag('subscribers-count')
+    } catch (err) {
+      console.log(err)
+    }
   }
+
+  const subscribersCount = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/items/subscribers?meta=total_count&access_token=${process.env.DIRECTUS_ADMIN_TOKEN}`,
+    {
+      next: {
+        tags: ['subscribers-count'],
+      },
+    },
+  )
+    .then((res) => res.json())
+    .then((res) => res.meta.total_count)
+    .catch((error) => console.log(error))
+
   return (
     <div className="relative overflow-hidden rounded-md bg-slate-100 px-6 py-10">
       {/* Overlay */}
@@ -32,7 +49,12 @@ export async function CTACard() {
           with me!
         </p>
         {/* News Letter Form */}
-        <form className="mt-6 flex w-full items-center" action={SignUpHandler}>
+        <form
+          // Sign upボタンをクリックした後値を空にするため、keyを設定する
+          key={subscribersCount + 'subscribers-form'}
+          className="mt-6 flex w-full items-center"
+          action={signUpHandler}
+        >
           <input
             name="email"
             placeholder="Write your email"
@@ -43,6 +65,14 @@ export async function CTACard() {
             Sign Up
           </button>
         </form>
+        {/* subscribers count */}
+        <div className="mt-5 text-neutral-700">
+          Join our
+          <span className="mx-2 rounded-md bg-neutral-700 px-2 py-1 text-sm text-neutral-100">
+            {subscribersCount}
+          </span>
+          subscribers new!
+        </div>
       </div>
     </div>
   )
