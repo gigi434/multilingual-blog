@@ -1,6 +1,17 @@
 import React from 'react'
 import Image from 'next/image'
-export function CTACard() {
+import { directusClient } from '@/lib'
+
+export async function CTACard() {
+  const SignUpHandler = async (formData: FormData) => {
+    'use server'
+    try {
+      const email = formData.get('email')
+      await directusClient.items('subscribers').createOne({
+        email,
+      })
+    } catch (err) {}
+  }
   return (
     <div className="relative overflow-hidden rounded-md bg-slate-100 px-6 py-10">
       {/* Overlay */}
@@ -21,10 +32,11 @@ export function CTACard() {
           with me!
         </p>
         {/* News Letter Form */}
-        <form className="mt-6 flex w-full items-center">
+        <form className="mt-6 flex w-full items-center" action={SignUpHandler}>
           <input
+            name="email"
             placeholder="Write your email"
-            type="text"
+            type="email"
             className="w-full rounded-md bg-white/80 px-3 py-2 text-base outline-none ring-neutral-600 placeholder:text-sm focus:ring-2 md:w-auto"
           />
           <button className="whitespace-nowrap rounded-md bg-neutral-900 px-3 py-2 text-neutral-200">
